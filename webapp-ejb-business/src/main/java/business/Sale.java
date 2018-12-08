@@ -65,6 +65,8 @@ public class Sale {
 	
 	@ManyToOne private Customer customer;
 	
+	@ManyToOne private Employee employee;
+	
 	/**
 	 * The products of the sale
 	 */
@@ -129,6 +131,10 @@ public class Sale {
 
 	public Customer getCustomer() {
 		return customer;
+	}
+	
+	public Employee getEmployee() {
+		return employee;
 	}
 	/**
 	 * @return Whether the sale is open
