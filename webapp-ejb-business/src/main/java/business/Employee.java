@@ -52,6 +52,9 @@ public class Employee {
 	 */
 	@SuppressWarnings("unused")
 	private int phoneNumber;
+	
+	@SuppressWarnings("unused")
+	private int total_comission;
 
 	// 1. constructor 
 
@@ -107,7 +110,19 @@ public class Employee {
 	public int getId() {
 		return id;
 	}
+	
+	public int getTotalComission() {
+		return total_comission;
+	}
+	
+	public void setTotalComission(int comission) {
+		this.total_comission = comission;
+	}
 
+	public void cancelAllComissions() {
+		this.total_comission = 0;
+	}
+	
 	/**
 	 * Checks if a VAT number is valid.
 	 * 

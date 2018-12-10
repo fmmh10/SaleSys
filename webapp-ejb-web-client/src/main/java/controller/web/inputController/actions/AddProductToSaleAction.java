@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import facade.exceptions.ApplicationException;
 import facade.handlers.ISaleServiceRemote;
 import presentation.web.model.AddProductToSaleModel;
-import presentation.web.model.NewCustomerModel;
 
 @Stateless
 public class AddProductToSaleAction extends Action {
@@ -23,7 +22,7 @@ public class AddProductToSaleAction extends Action {
 	public void process(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 
-		AddProductToSaleModel model = new AddProductToSaleModel();
+		AddProductToSaleModel model = createHelper(request);
 		request.setAttribute("model", model);
 		System.out.println("erro");
 		

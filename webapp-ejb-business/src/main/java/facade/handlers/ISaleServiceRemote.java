@@ -12,4 +12,5 @@ public interface ISaleServiceRemote {
 	public SaleDTO addProductToSale(int saleId, int productCode, double qty) throws ApplicationException;
 	public double getSaleDiscount (int saleId) throws ApplicationException;
 	public void close (int saleId) throws ApplicationException;
+	public void addEmployeeToSale (int saleId, int vatNumber) throws ApplicationException;
 }

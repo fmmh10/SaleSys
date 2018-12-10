@@ -13,6 +13,7 @@ import javax.transaction.Transactional;
 
 import business.Customer;
 import business.Discount;
+import business.Employee;
 import business.Product;
 import business.Sale;
 import enums.SaleStatus;
@@ -34,6 +35,7 @@ public class SaleCatalog {
 	private CustomerCatalog customerCatalog;
 	private ProductCatalog productCatalog;
 	private DiscountCatalog discountCatalog;
+	private EmployeeCatalog employeeCatalog;
 	
 	/**
 	 * Creates new sale
@@ -88,6 +90,14 @@ public class SaleCatalog {
 			throw new ApplicationException("Sale with id " + saleId + " not found");
 		else
 			return s;
+	}
+	
+	@Transactional(Transactional.TxType.REQUIRES_NEW)
+	public void addEmployeeToSale (int saleId, int vatNumber) throws ApplicationException {
+		Employee employee = employeeCatalog.getEmployee(vatNumber);
+		Sale sale = getSaleById(saleId);
+		sale.setEmployee(employee);
+		em.persist(sale);
 	}
 
 }

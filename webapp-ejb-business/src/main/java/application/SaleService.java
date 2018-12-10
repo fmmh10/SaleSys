@@ -5,6 +5,7 @@ import javax.ejb.Stateless;
 import facade.dto.SaleDTO;
 import facade.exceptions.ApplicationException;
 import facade.handlers.ISaleServiceRemote;
+import handlers.AddEmployeeToSaleHandler;
 import handlers.AddProductToSaleHandler;
 import handlers.CloseSaleHandler;
 import handlers.NewSaleHandler;
@@ -21,6 +22,8 @@ public class SaleService implements ISaleServiceRemote {
 	private SaleDiscountHandler saleDiscountHandler;
 	@EJB
 	private CloseSaleHandler closeSaleHandler;
+	@EJB
+	private AddEmployeeToSaleHandler EmployeeSaleHandler;
 	
 	@Override
 	public SaleDTO newSale(int vat) throws ApplicationException {
@@ -41,6 +44,11 @@ public class SaleService implements ISaleServiceRemote {
 	@Override
 	public void close(int saleId) throws ApplicationException {
 		closeSaleHandler.close(saleId);
+		
+	}
+	
+	public void addEmployeeToSale (int saleId, int vatNumber) throws ApplicationException {
+		EmployeeSaleHandler.addEmployeeToSale(saleId, vatNumber);
 		
 	}
 	

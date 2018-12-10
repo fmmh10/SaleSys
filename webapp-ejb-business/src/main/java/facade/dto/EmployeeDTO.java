@@ -9,12 +9,14 @@ public class EmployeeDTO implements Serializable {
 	private final int phoneNumber;
 	private final String designation;
 	private final int id;
+	private final int total_comission;
 
-	public EmployeeDTO(int vatNumber, int phoneNumber, String designation, int id) {
+	public EmployeeDTO(int vatNumber, int phoneNumber, String designation, int id, int total_comission) {
 		this.vatNumber = vatNumber;
 		this.phoneNumber = phoneNumber;
 		this.designation = designation;
 		this.id = id;
+		this.total_comission = total_comission;
 	}
 	
 	public String getDesignation() {
@@ -32,4 +34,9 @@ public class EmployeeDTO implements Serializable {
 	public int getPhoneNumber() {
 		return phoneNumber;
 	}
+	
+	public int getTotalComission() {
+		return total_comission;
+	}
+
 }

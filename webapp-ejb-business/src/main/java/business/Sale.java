@@ -4,7 +4,6 @@ import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.EnumType.STRING;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -164,6 +163,13 @@ public class Sale {
 			throw new ApplicationException("Product " + product.getProdCod() + " has stock ("  + 
 							product.getQty() + ") which is insuficient for the current sale");
 	}
+	
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+		
+	}
+	
+	
 
 	public LocalDate getDate() {
 		return date;
