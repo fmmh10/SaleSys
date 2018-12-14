@@ -56,7 +56,7 @@ public class EmployeeCatalog {
 	}
 	
 	public Iterable<Employee> getEmployees() {
-        TypedQuery<Employee> query = em.createNamedQuery(Employee.FIND_ALL_EmployeeS, Employee.class);
+        TypedQuery<Employee> query = em.createNamedQuery(Employee.FIND_ALL_EMPLOYEES, Employee.class);
         return new LinkedList<>(query.getResultList());
 	}
 	

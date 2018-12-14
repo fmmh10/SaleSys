@@ -25,7 +25,12 @@ public class CancelAllComissionsAction extends Action {
 		CancelAllComissionsModel model = new CancelAllComissionsModel();
 		request.setAttribute("model", model);
 		
-		cancelAllComissionsHandler.cancelAllComissions();
+		try {
+			cancelAllComissionsHandler.cancelAllComissions();
+			model.addMessage("All employee comissions were cancelled successfully");
+		} catch (ApplicationException e) {
+			model.addMessage("Error cancelling comissions: " + e.getMessage());
+		}
 		
 		request.getRequestDispatcher("/cancelAllComissions/cancelAllComissions.jsp").forward(request, response);
 	}

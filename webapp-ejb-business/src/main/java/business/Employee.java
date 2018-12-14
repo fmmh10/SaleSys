@@ -16,16 +16,16 @@ import javax.persistence.NamedQuery;
  */
 @Entity  
 @NamedQueries({
-	@NamedQuery(name=Employee.FIND_BY_VAT_NUMBER, query="SELECT c FROM Employee c WHERE c.vatNumber = :" + 
+	@NamedQuery(name=Employee.FIND_BY_VAT_NUMBER, query="SELECT e FROM Employee e WHERE e.vatNumber = :" + 
 		Employee.NUMBER_VAT_NUMBER),
-	@NamedQuery(name=Employee.FIND_ALL_EmployeeS, query="SELECT c FROM Employee c")
+	@NamedQuery(name=Employee.FIND_ALL_EMPLOYEES, query="SELECT e FROM Employee e")
 })
 public class Employee {
 
 	// Named query name constants
 	public static final String FIND_BY_VAT_NUMBER = "Employee.findByVATNumber";
 	public static final String NUMBER_VAT_NUMBER = "vatNumber";
-	public static final String FIND_ALL_EmployeeS = "Employee.findAllEmployees";
+	public static final String FIND_ALL_EMPLOYEES = "Employee.findAllEmployees";
 	
 	// Employee attributes 
 

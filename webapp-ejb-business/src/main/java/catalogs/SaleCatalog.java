@@ -1,7 +1,5 @@
 package catalogs;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.time.LocalDate;
 
 import javax.ejb.EJB;
@@ -48,7 +46,7 @@ public class SaleCatalog {
 	@Transactional(Transactional.TxType.REQUIRES_NEW)
 	public Sale newSale (int vat) throws ApplicationException {
 		Customer customer = customerCatalog.getCustomer(vat);
-		Sale sale = new Sale(LocalDate.now(), customer);
+		Sale sale = new Sale(LocalDate.now(), customer,null);
 		em.persist(sale);
 		return sale;
 	}
@@ -92,11 +90,18 @@ public class SaleCatalog {
 			return s;
 	}
 	
-	@Transactional(Transactional.TxType.REQUIRES_NEW)
 	public void addEmployeeToSale (int saleId, int vatNumber) throws ApplicationException {
 		Employee employee = employeeCatalog.getEmployee(vatNumber);
 		Sale sale = getSaleById(saleId);
 		sale.setEmployee(employee);
+		em.merge(sale);
+	}
+	
+	
+	@Transactional(Transactional.TxType.REQUIRES_NEW)
+	public void addComissionPercentageToSale (int saleId, int percentage) throws ApplicationException {
+		Sale sale = getSaleById(saleId);
+		sale.setComission_percentage(percentage);
 		em.persist(sale);
 	}
 

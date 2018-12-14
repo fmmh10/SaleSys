@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
@@ -66,6 +67,9 @@ public class Sale {
 	
 	@ManyToOne private Employee employee;
 	
+	@Column
+	private int comission_percentage;
+	
 	/**
 	 * The products of the sale
 	 */
@@ -90,9 +94,10 @@ public class Sale {
 	 * @param date The date that the sale occurred
 	 * @param customer The customer that made the purchase
 	 */
-	public Sale(LocalDate date, Customer customer) {
+	public Sale(LocalDate date, Customer customer, Employee employee) {
 		this.date = date;
 		this.customer = customer;
+		this.employee = employee;
 		this.status = SaleStatus.OPEN;
 		this.saleProducts = new LinkedList<SaleProduct>();
 	}
@@ -169,7 +174,13 @@ public class Sale {
 		
 	}
 	
+	public int getComission_percentage() {
+		return comission_percentage;
+	}
 	
+	public void setComission_percentage(int comission_percentage) {
+		this.comission_percentage = comission_percentage;
+	}	
 
 	public LocalDate getDate() {
 		return date;

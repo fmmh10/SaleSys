@@ -13,4 +13,5 @@ public interface ISaleServiceRemote {
 	public double getSaleDiscount (int saleId) throws ApplicationException;
 	public void close (int saleId) throws ApplicationException;
 	public void addEmployeeToSale (int saleId, int vatNumber) throws ApplicationException;
+	public void addComissionPercentageToSale (int saleId, int percentage) throws ApplicationException;
 }

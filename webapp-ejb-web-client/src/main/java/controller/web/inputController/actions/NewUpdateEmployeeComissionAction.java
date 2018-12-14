@@ -22,7 +22,6 @@ public class NewUpdateEmployeeComissionAction extends Action {
 	@Override
 	public void process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, ApplicationException {
-		// TODO Auto-generated method stub
 		
 		UpdateEmployeeComissionModel model = new UpdateEmployeeComissionModel();
 		request.setAttribute("model", model);

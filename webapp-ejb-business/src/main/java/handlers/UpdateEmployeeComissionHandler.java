@@ -13,7 +13,13 @@ public class UpdateEmployeeComissionHandler {
 	private EmployeeCatalog employeeCatalog;
 	
 	public void update(int vatNumber, int comission) throws ApplicationException {
-		employeeCatalog.updateEmployeeComission(vatNumber, comission);
+		try {
+			
+			employeeCatalog.updateEmployeeComission(vatNumber, comission);
+		} catch (Exception e) {
+			throw new ApplicationException ("Error updating comission to the employee with the vatNumber:" + vatNumber, e);
+		}
 	}
+	
 
 }
