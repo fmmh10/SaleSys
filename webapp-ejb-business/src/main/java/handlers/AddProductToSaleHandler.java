@@ -43,7 +43,6 @@ public class AddProductToSaleHandler {
 			Customer c = s.getCustomer();
 			CustomerDTO customerDTO = new CustomerDTO(c.getVATNumber(), c.getPhoneNumber(), 
 					                                  c.getDesignation(), c.getId());
-			System.out.println("erro");
 			return new SaleDTO(customerDTO, s.getDate(), s.isOpen(), sp, s.getId());
 		} catch (Exception e) {
 			throw new ApplicationException ("Error adding product to sale with id " + saleId, e);

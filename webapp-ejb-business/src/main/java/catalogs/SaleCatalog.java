@@ -31,8 +31,11 @@ public class SaleCatalog {
 	 */
 	@EJB
 	private CustomerCatalog customerCatalog;
+	@EJB
 	private ProductCatalog productCatalog;
+	@EJB
 	private DiscountCatalog discountCatalog;
+	@EJB
 	private EmployeeCatalog employeeCatalog;
 	
 	/**
@@ -80,7 +83,7 @@ public class SaleCatalog {
 			
 		
 	}
-	
+		
 	
 	public Sale getSaleById(int saleId) throws ApplicationException {
 		Sale s = em.find(Sale.class, saleId);
@@ -93,8 +96,10 @@ public class SaleCatalog {
 	public void addEmployeeToSale (int saleId, int vatNumber) throws ApplicationException {
 		Employee employee = employeeCatalog.getEmployee(vatNumber);
 		Sale sale = getSaleById(saleId);
-		sale.setEmployee(employee);
-		em.merge(sale);
+		if(sale.getEmployee() == null) {
+			sale.setEmployee(employee);
+			em.persist(sale);
+		}
 	}
 	
 	

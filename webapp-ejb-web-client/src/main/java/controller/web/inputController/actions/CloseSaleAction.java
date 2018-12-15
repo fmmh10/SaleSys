@@ -22,24 +22,27 @@ public class CloseSaleAction extends Action{
 	public void process(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException, ApplicationException {
 
-		
-		CloseSaleModel model = new CloseSaleModel();
+		CloseSaleModel model = createHelper(request);
 		request.setAttribute("model", model);
-		
+				
 		try {
-		
-		model.setSaleId(Integer.parseInt(request.getParameter("saleId")));
-		
-		CloseSaleHandler.close(model.getSaleId());
+			
+			CloseSaleHandler.close(model.getSaleId());
+			model.addMessage("Sale closed successfully!");
 		
 		} catch (ApplicationException e) {
 			model.addMessage("Error closing sale: " + e.getMessage());
 		}
 		
-		catch (NumberFormatException e) {
-			model.addMessage("Error numberformat, mas dá para fechar a venda na BD na mesma...");
-		}
-		
 		request.getRequestDispatcher("/closeSale/closeSale.jsp").forward(request, response);
+	}	
+	
+	
+	private CloseSaleModel createHelper(HttpServletRequest request) {
+		// Create the object model
+		CloseSaleModel model = new CloseSaleModel();
+		// fill it with data from the request
+		model.setSaleId(Integer.parseInt(request.getParameter("saleId")));
+		return model;
 	}	
 }

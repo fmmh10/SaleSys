@@ -20,46 +20,35 @@ public class SaleDiscountAction extends Action {
 	@EJB 
 	private ISaleServiceRemote SaleDiscountHandler;
 
+	@Override
 	public void process(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 
-		SaleDiscountModel model = new SaleDiscountModel();
+		SaleDiscountModel model = createHelper(request);
 		request.setAttribute("model", model);
 		
-		if (validInput(model)) {
-			try {
+		try {
 				
-				double discount = SaleDiscountHandler.getSaleDiscount(model.getSaleId());
-				
-				populateHelper(model, request, discount);
-				
-				request.setAttribute("model", model);
-				//model.clearFields();
-			} catch (ApplicationException e) {
-				model.addMessage("Error searching for discount sale: " + e.getMessage());
-			}
-		} else
-			model.addMessage("Error validating sale data");
+			double discount = SaleDiscountHandler.getSaleDiscount(model.getSaleId());
+			model.addMessage("Discount:" + discount);
+			
+		} catch (ApplicationException e) {
+			model.addMessage("Error searching for discount sale: " + e.getMessage());
+		}
 		
 		
 		
 		
-		request.getRequestDispatcher("/saleDiscount/showDiscount.jsp").forward(request, response);
+		request.getRequestDispatcher("/saleDiscount/saleDiscount.jsp").forward(request, response);
 	}
 	
 	
-	private boolean validInput(SaleDiscountModel model) {
-		
-		// check if designation is filled
-		//não esta completo
-		return true;
-	}
 	
-	
-	private void populateHelper(SaleDiscountModel model, HttpServletRequest request, double discount) {
-
+	private SaleDiscountModel createHelper(HttpServletRequest request) {
+		SaleDiscountModel model = new  SaleDiscountModel();
 		// fill it with data from the request
 		model.setSaleId(Integer.parseInt(request.getParameter("saleId")));
+		return model;
 	}	
 
 }

@@ -24,11 +24,9 @@ public class AddProductToSaleAction extends Action {
 
 		AddProductToSaleModel model = createHelper(request);
 		request.setAttribute("model", model);
-		System.out.println("erro");
 		
 		try {
 			addProductToSaleHandler.addProductToSale(model.getSaleId(), model.getProductCode(), model.getQty());
-			System.out.println("erro2");
 			model.clearFields();
 			model.addMessage("Product successfully added.");
 		} catch (ApplicationException e) {
