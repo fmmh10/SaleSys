@@ -96,10 +96,9 @@ public class SaleCatalog {
 	public void addEmployeeToSale (int saleId, int vatNumber) throws ApplicationException {
 		Employee employee = employeeCatalog.getEmployee(vatNumber);
 		Sale sale = getSaleById(saleId);
-		if(sale.getEmployee() == null) {
-			sale.setEmployee(employee);
-			em.persist(sale);
-		}
+		sale.setEmployee(employee);
+		em.persist(sale);
+		
 	}
 	
 	

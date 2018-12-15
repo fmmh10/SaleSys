@@ -5,6 +5,7 @@ INSERT INTO Customer (id, designation, phoneNumber, vatNumber, discount_id) VALU
 INSERT INTO Customer (id, designation, phoneNumber, vatNumber, discount_id) VALUES (2, 'IST', 218417000, 501507930, 2);
 INSERT INTO Customer (id, designation, phoneNumber, vatNumber, discount_id) VALUES (3, 'ISCTE', 211932235, 501510184, 3);
 INSERT INTO Employee (id, designation, phoneNumber, total_comission, vatNumber) VALUES (1, 'Francisco', 910000100, 0, 1000);
+INSERT INTO Employee (id, designation, phoneNumber, total_comission, vatNumber) VALUES (2, 'Jeff', 910000111, 0, 10);
 INSERT INTO Unit (id, abbreviation, description) VALUES (1, 'Kg', 'Kilogram');
 INSERT INTO Unit (id, abbreviation, description) VALUES (2, 'l', 'Liters');
 INSERT INTO Unit (id, abbreviation, description) VALUES (3, 'u', 'units');

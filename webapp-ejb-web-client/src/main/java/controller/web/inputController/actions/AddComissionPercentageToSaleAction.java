@@ -26,15 +26,30 @@ public class AddComissionPercentageToSaleAction extends Action{
 		AddComissionPercentageToSaleModel model = createHelper(request);
 		request.setAttribute("model", model);
 		
-		try {
-			addComissionPercentageToSaleHandler.addComissionPercentageToSale(model.getSaleId(), model.getComission_percentage());
-			model.addMessage("Comission Percentage successfully added.");
-		} catch (ApplicationException e) {
-			model.addMessage("Error adding Comission Percentage: " + e.getMessage());
-		}
-		
+		if (validInput(model)) {
+			try {
+				addComissionPercentageToSaleHandler.addComissionPercentageToSale(model.getSaleId(), model.getComission_percentage());
+				model.addMessage("Comission Percentage successfully added.");
+			} catch (ApplicationException e) {
+				model.addMessage("Error adding Comission Percentage: " + e.getMessage());
+			}
+		} else
+			model.addMessage("Error validating customer data");
+			
+			
 		request.getRequestDispatcher("/addComissionPercentageToSale/addComissionPercentageToSale.jsp").forward(request, response);
 	}
+	
+	
+	private boolean validInput(AddComissionPercentageToSaleModel model) {
+		
+		// check if designation is filled
+		boolean result = isFilled(model,Integer.toString(model.getSaleId()), "Sale id must be filled.");
+		
+		result &= isFilled(model, Integer.toString(model.getComission_percentage()), "Percentage type must be filled");
+		return result;
+	}
+
 	
 	
 	
